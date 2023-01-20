@@ -1,0 +1,80 @@
+.notification {
+    display: flex;
+    align-items: center;
+    background-color: #5bf1ef;
+    margin: 10px;
+    padding: 10px;
+    border-radius:15px  ;
+    -webkit-border-radius:15px  ;
+    -moz-border-radius:15px  ;
+    -ms-border-radius:15px  ;
+    -o-border-radius:15px  ;
+}
+  .notification img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+  }
+  .notification .name {
+    font-size: 16px;
+    font-weight: bold;
+    margin-left: 10px;
+  }
+  .notification .btn-container1 {
+    margin-left: auto;
+    display: flex;
+  }
+  .notification .btn {
+    margin-left: 5px;
+  }
+  .notification .accepted {
+    background-color: whitesmoke;
+  }
+  
+  .dispnone{
+    display : none;
+  }
+  .dispblock{
+    display : block;
+  }
+
+
+
+
+
+
+/* 
+  
+   .notification {
+    display: flex;
+    align-items: center;
+  }
+  .notification img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
+  .notification .name {
+    font-size: 16px;
+    font-weight: bold;
+    margin-left: 10px;
+  }
+  .notification .btn-container {
+    margin-left: auto;
+    display: flex;
+  }
+  .notification .btn {
+    margin-left: 5px;
+  }
+  .notification .accepted {
+    display: none;
+  }
+  .notification .accepted.show {
+    display: block;
+  }
+  .notification .deleted {
+    display: none;
+  }
+  .notification .deleted.show {
+    display: block;
+  } */
