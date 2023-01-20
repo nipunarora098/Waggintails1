@@ -20,7 +20,7 @@ function SignupPM({setLoginUser}) {
         .then (res => {
           alert(res.data.message);
           if(res.data.user){
-            localStorage.setItem('User' , JSON.stringify(res.data.user));
+            localStorage.setItem(process.env.User , JSON.stringify(res.data.user));
             // setLoginUser(res.data.user);
             Navigate("/MemberArea");
           }
@@ -38,7 +38,7 @@ function SignupPM({setLoginUser}) {
         .then (res => {
           alert(res.data.message);
           if(res.data.user){
-          localStorage.setItem('User' , JSON.stringify(res.data.user));
+          localStorage.setItem(process.env.User , JSON.stringify(res.data.user));
           // setLoginUser(res.data.user);
           Navigate("/MemberArea");
         }

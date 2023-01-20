@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../css/UserProfile.css";
 function UserProfile(props) {
-  const User = JSON.parse(localStorage.getItem('User'));    
+  const User = JSON.parse(localStorage.getItem(process.env.User));    
   const Navigate = useNavigate();
   const [UserName, setUserName] = useState(User.UserName);
   const [Email, setEmail] = useState(User.Email);

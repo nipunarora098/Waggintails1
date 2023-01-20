@@ -5,11 +5,11 @@ import "../css/Notifications.css";
 import { Buffer } from "buffer";
 import axios from "axios";
 function Notifications(props) {
-  const User = JSON.parse(localStorage.getItem('User'));
+  const User = JSON.parse(localStorage.getItem(process.env.User));
   // const User = props.User;
   const Navigate = useNavigate();
   function Logout() {
-    localStorage.setItem('User', JSON.stringify({}));
+    localStorage.setItem(process.env.User, JSON.stringify({}));
     Navigate("/SignupPM");
   }
   const [Requests, setRequests] = useState([]);

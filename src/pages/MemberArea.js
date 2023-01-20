@@ -13,7 +13,7 @@ function MemberArea(props) {
   let User = null;
   let id = null;
   if (!User) {
-    User = JSON.parse(localStorage.getItem("User"));
+    User = JSON.parse(localStorage.getItem(process.env.User));
     id = User._id;
   }
   if (!User) {
@@ -98,7 +98,7 @@ function MemberArea(props) {
     );
   }
   function Logout() {
-    localStorage.removeItem("User");
+    localStorage.removeItem(process.env.User);
     Navigate("/SignupPM");
   }
   return (

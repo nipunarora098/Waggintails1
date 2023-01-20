@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "../css/editPetProfile.css";
 function EditPetProfile() {
   const [image , setImage] = useState(null);
-  const User = JSON.parse(localStorage.getItem('User'));
+  const User = JSON.parse(localStorage.getItem(process.env.User));
   useEffect(() =>{
     if(!User){
       Navigate('/SignupPM');
@@ -42,12 +42,12 @@ if(User) fetchImage();
     };
     axios.post("http://localhost:9002/SubmitPetDetails", Pet).then((res) => {
       alert(res.data.message);
-      localStorage.setItem('User', JSON.stringify(res.data.user));
+      localStorage.setItem(process.env.User, JSON.stringify(res.data.user));
       Navigate("/PetProfile");
     });
   };
   function Logout(){
-    localStorage.removeItem('User');
+    localStorage.removeItem(process.env.User);
     Navigate("/SignupPM");
   }
   return (

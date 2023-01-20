@@ -14,7 +14,7 @@ function Chat({setProfileId}){
     const [currentChat , setcurrentChat] = useState(undefined);
     let User ;
     if(!User){
-    User = JSON.parse(localStorage.getItem('User'));
+    User = JSON.parse(localStorage.getItem(process.env.User));
 }    
     useEffect(() =>{
         if(User){

@@ -5,6 +5,7 @@ import "../css/LogOut.css";
 function LogOut(){
     const Navigate = useNavigate();
     const handleClick = async () =>{
+        
         localStorage.clear();
         Navigate("/SignupPM");
     }
