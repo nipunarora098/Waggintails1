@@ -16,7 +16,7 @@ function SignupPM({setLoginUser}) {
         UserName : UserName , 
         Password : Password
       }
-      axios.post('/login' , user)
+      axios.post(`${process.env.REACT_APP_API_URL}/login` , user)
         .then (res => {
           alert(res.data.message);
           if(res.data.user){
@@ -34,7 +34,7 @@ function SignupPM({setLoginUser}) {
         Email : Email,
       }
       if(UserName && Password && Email && (Password === ConPass)){
-        axios.post('/register' , user)
+        axios.post(`${process.env.REACT_APP_API_URL}/register` , user)
         .then (res => {
           alert(res.data.message);
           if(res.data.user){

@@ -64,7 +64,7 @@ const userSchema = new mongoose.Schema({
 const User = new mongoose.model("User", userSchema);
 //--------------------------------------------------
 // For Login ---------------------------------------
-app.post("/login", (req, res) => {
+app.post("/api/login", (req, res) => {
   const data = req.body;
   User.findOne({UserName : data.UserName} , (err , user) => {
     if(user){
@@ -86,7 +86,7 @@ app.post("/login", (req, res) => {
 });
 //-------------------------------
 // For Register -----------------
-app.post("/register", (req, res) => {
+app.post("/api/register", (req, res) => {
   const data = req.body;
   User.findOne({ UserName : data.UserName }, (err, user) => {
     if (user) {
@@ -128,7 +128,7 @@ app.post("/register", (req, res) => {
 });
 //---------------------------------------------------------------------------------
 //For Returning User details
-app.post("/SubmitUserDetails" , (req , res) => {
+app.post("/api/SubmitUserDetails" , (req , res) => {
   const user_id = req.body._id;
   User.findOneAndUpdate({_id :user_id},
     req.body
