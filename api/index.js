@@ -444,3 +444,4 @@ app.post('/GetUserDetails', (req, res) => {
     }
    });
 });
+module.exports = app;
