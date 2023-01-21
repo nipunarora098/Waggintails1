@@ -65,7 +65,7 @@ const userSchema = new mongoose.Schema({
 const User = new mongoose.model("User", userSchema);
 //--------------------------------------------------
 // For Login ---------------------------------------
-app.post("/api/login", (req, res) => {
+app.post("/login", (req, res) => {
   const data = req.body;
   User.findOne({UserName : data.UserName} , (err , user) => {
     if(user){
