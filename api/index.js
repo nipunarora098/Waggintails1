@@ -24,7 +24,7 @@ app.use(cors({
 }));
 app.use(bodyParser.json({limit: '400kb'}));
 app.use(express.json());
-const defaultImage = fs.readFileSync(path.resolve(__dirname + "/profile.png"));
+const defaultImage = fs.readFileSync(path.resolve(__dirname + "profile.png"));
 app.use(bodyParser.urlencoded({ extended: true }));
 mongoose.set('strictQuery', false);
 mongoose.connect(
@@ -130,7 +130,7 @@ app.post("/api/register", (req, res) => {
 });
 //---------------------------------------------------------------------------------
 //For Returning User details
-app.post("/api/SubmitUserDetails" , (req , res) => {
+app.post("/SubmitUserDetails" , (req , res) => {
   const user_id = req.body._id;
   User.findOneAndUpdate({_id :user_id},
     req.body
@@ -155,7 +155,7 @@ const storage = multer.diskStorage({
   }
 });
 const upload = multer({storage : storage});
-app.post('/api/ChangeProfile' , upload.single('Image') ,(req , res) =>{
+app.post('/ChangeProfile' , upload.single('Image') ,(req , res) =>{
     User.findOneAndUpdate({_id:req.body.id} , {
         image : {
           data : fs.readFileSync(req.file.path),
@@ -169,7 +169,7 @@ app.post('/api/ChangeProfile' , upload.single('Image') ,(req , res) =>{
 //   res.header("Access-Control-Allow-Origin", "*");
 //   next();
 // });
-app.get('/api/GetProfilePhoto/:id', (req, res) => {
+app.get('/GetProfilePhoto/:id', (req, res) => {
   User.findById(req.params.id, (err, user) => {
     if (err) return res.send(err);
     else {
@@ -182,7 +182,7 @@ app.get('/api/GetProfilePhoto/:id', (req, res) => {
 });
 //------------------------------------------------------
 // Submit Pet Details ----------------------------------
-app.post("/api/SubmitPetDetails" , (req , res) => {
+app.post("/SubmitPetDetails" , (req , res) => {
   const user_id = req.body._id;
   User.findOneAndUpdate({_id :user_id},
     req.body
@@ -201,7 +201,7 @@ const ImageSchema = new mongoose.Schema({
   }
 });
 const Image = new mongoose.model("Image" , ImageSchema);
-app.post('/api/AddPhotos' , upload.single('Image') ,(req , res) =>{
+app.post('/AddPhotos' , upload.single('Image') ,(req , res) =>{
     const image = new Image({
       user_id : req.body.id,
       image : {
@@ -217,7 +217,7 @@ app.post('/api/AddPhotos' , upload.single('Image') ,(req , res) =>{
 //------------------------------------------------------------------------
 // GetImages to display in Pet Profile -----------------------------------
 //------------------------------------------------------------------------
-app.get('/api/GetImages/:id', (req, res) => {
+app.get('/GetImages/:id', (req, res) => {
   Image.find({user_id : req.params.id})
   .then(image => {
     res.json(image);
@@ -227,7 +227,7 @@ app.get('/api/GetImages/:id', (req, res) => {
 //---------------------------------------------
 // Delete Photo -------------------------------
 //---------------------------------------------
-app.post('/api/DeletePhoto' , (req , res) =>{
+app.post('/DeletePhoto' , (req , res) =>{
   console.log(req.body);
   Image.findOneAndDelete({_id : req.body.id},function(err){
     if(err) res.send(err);
@@ -238,7 +238,7 @@ app.post('/api/DeletePhoto' , (req , res) =>{
 // return members list  --------------------------------------------------
 //------------------------------------------------------------------------
 
-app.get('/api/GetMembers/:id' , async (req , res) => {
+app.get('/GetMembers/:id' , async (req , res) => {
   const [user1, user2] = await Promise.all([
     Friends.find({ User1: req.params.id }).select(["User2"]),
     Friends.find({ User2: req.params.id }).select(["User1"]),
@@ -267,7 +267,7 @@ const RequestSchema = new mongoose.Schema({
   image : Object
 });
 const Requests = new mongoose.model("Requests" , RequestSchema);
-app.post('/api/SendRequest' , (req , res) => {
+app.post('/SendRequest' , (req , res) => {
   const request = new Requests({
     Sender : req.body.Sender,
     Receiver : req.body.Receiver,
@@ -300,7 +300,7 @@ app.post('/api/SendRequest' , (req , res) => {
 // Get request --------------------------------------------------
 //------------------------------------------------------------------------
 
-app.get('/api/GetRequests/:id' , (req , res) => {
+app.get('/GetRequests/:id' , (req , res) => {
   Requests.find({Receiver : req.params.id},(err , Requests) => {
     if(err) return res.status(500).send(err);
     res.send(Requests);
@@ -317,7 +317,7 @@ const Friends = new mongoose.model("Friends" , FriendSchema);
 //-----------------------------------------------------
 // Accept Request ------------------------------------------
 //-----------------------------------------------------
-app.post('/api/AcceptRequest' , (req,res) => {
+app.post('/AcceptRequest' , (req,res) => {
   const friend = new Friends({
     User1 : req.body.Sender,
     User2 : req.body.Receiver
@@ -333,7 +333,7 @@ app.post('/api/AcceptRequest' , (req,res) => {
 //---------------------------------------------------
 //Delete Request ------------------------------------
 //---------------------------------------------------
-app.post('/api/DeleteRequest' , (req,res) => {
+app.post('/DeleteRequest' , (req,res) => {
   Requests.findOneAndDelete(req.body,function(err){
     if(err) res.send(err);
     else res.send({message:"Request Deleted"});
@@ -342,7 +342,7 @@ app.post('/api/DeleteRequest' , (req,res) => {
 //---------------------------------------------------
 //Get Contacts ------------------------------------
 //---------------------------------------------------
-app.get('/api/GetContacts/:id', async (req, res) => {
+app.get('/GetContacts/:id', async (req, res) => {
   const [user1, user2] = await Promise.all([
     Friends.find({ User1: req.params.id }).select(["User2"]),
     Friends.find({ User2: req.params.id }).select(["User1"]),
@@ -385,7 +385,7 @@ const messageSchema = new mongoose.Schema(
 )
 const Messages = new mongoose.model("Messages"  , messageSchema);
 
-app.post("/api/AddMessage" ,  async(req , res) =>{
+app.post("/AddMessage" ,  async(req , res) =>{
   const {from , to , message} = req.body;
   const data = new Messages({
     message:{text : message}, 
@@ -397,7 +397,7 @@ app.post("/api/AddMessage" ,  async(req , res) =>{
     else res.send({message : "Message added Successfully "});
   })
 });
-app.post("/api/GetAllMessages" , async(req , res) =>{
+app.post("/GetAllMessages" , async(req , res) =>{
   const {from , to} = req.body;
   const messages = await Messages.find({
     users:{
@@ -441,7 +441,7 @@ io.on('connection' , (socket) =>{
 //----------------------------------------------
 // Get User details ----------------------------
 //----------------------------------------------
-app.post('/api/GetUserDetails', (req, res) => {
+app.post('/GetUserDetails', (req, res) => {
   User.findById(req.body.id, (err, user) => {
     if (err) return res.send(err);
     else {
