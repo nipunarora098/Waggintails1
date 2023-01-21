@@ -59,7 +59,7 @@ function MemberArea(props) {
     e1.className = "button dispnone";
     const e2 = document.getElementById(`Request-${props.id}-2`);
     e2.className = "button dispblock";
-    axios.post("http://localhost:9002/SendRequest", request).then((res) => {
+    axios.post(`${process.env.REACT_APP_API_URL}/SendRequest`, request).then((res) => {
       toast.error(res.data.message,{
         position : "bottom-right",
         autoClose : 8000,
