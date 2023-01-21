@@ -24,7 +24,7 @@ app.use(cors({
 }));
 app.use(bodyParser.json({limit: '400kb'}));
 app.use(express.json());
-const defaultImage = fs.readFileSync(path.resolve(__dirname + "profile.png"));
+const defaultImage = fs.readFileSync(path.resolve(__dirname + "/profile.png"));
 app.use(bodyParser.urlencoded({ extended: true }));
 mongoose.set('strictQuery', false);
 mongoose.connect(
