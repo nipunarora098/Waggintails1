@@ -5,12 +5,13 @@ const bodyParser = require('body-parser');
 const {ObjectId} = require('mongodb');
 const multer = require('multer');
 const path = require('path');
-// const router = require('express').Router();
+const router = require('express').Router();
 const fs = require('fs');
 const socket = require("socket.io");
 var bcrypt = require('bcrypt');
 const dotenv = require('dotenv');
 dotenv.config();
+const MOGOURI = process.env.MOGOURI;
 // const userRouter = require('./routes/users');
 // app.use('/users', userRouter);
 // import fs from "fs";
@@ -22,11 +23,11 @@ app.use(cors({
 }));
 app.use(bodyParser.json({limit: '400kb'}));
 app.use(express.json());
-const defaultImage = fs.readFileSync('public/images/uploads/profile.png' );
+const defaultImage = fs.readFileSync('profile.png' );
 app.use(bodyParser.urlencoded({ extended: true }));
 mongoose.set('strictQuery', false);
 mongoose.connect(
-  process.env.MOGOURI,
+  MOGOURI,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -69,7 +70,7 @@ app.post("/api/login", (req, res) => {
   User.findOne({UserName : data.UserName} , (err , user) => {
     if(user){
         bcrypt.compare(data.Password , user.Password , function (err , result){
-          if(result === true){
+          if(result == true){
             res.send({message : "Login Successfully " , user : user});
           }
           else{
@@ -128,7 +129,7 @@ app.post("/api/register", (req, res) => {
 });
 //---------------------------------------------------------------------------------
 //For Returning User details
-app.post("/api/SubmitUserDetails" , (req , res) => {
+app.post("/SubmitUserDetails" , (req , res) => {
   const user_id = req.body._id;
   User.findOneAndUpdate({_id :user_id},
     req.body
@@ -419,7 +420,7 @@ const io = socket(server , {
     Credentials : true , 
   },
 })
-global.onlineUsers = new Map(); 
+global.onlineUsers = new Map();
 io.on('connection' , (socket) =>{
   global.chatSocket = socket ;
   socket.on('add-user' , (userId) =>{
@@ -443,4 +444,3 @@ app.post('/GetUserDetails', (req, res) => {
     }
    });
 });
-module.exports = app;

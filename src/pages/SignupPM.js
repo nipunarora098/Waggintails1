@@ -36,6 +36,7 @@ function SignupPM({setLoginUser}) {
       if(UserName && Password && Email && (Password === ConPass)){
         axios.post(`${process.env.REACT_APP_API_URL}/register` , user)
         .then (res => {
+          // console.log(res.data.message);
           alert(res.data.message);
           if(res.data.user){
           localStorage.setItem(process.env.User , JSON.stringify(res.data.user));
