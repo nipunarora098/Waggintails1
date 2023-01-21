@@ -65,7 +65,7 @@ const userSchema = new mongoose.Schema({
 const User = new mongoose.model("User", userSchema);
 //--------------------------------------------------
 // For Login ---------------------------------------
-app.post("/login", (req, res) => {
+app.post("\api/login", (req, res) => {
   const data = req.body;
   User.findOne({UserName : data.UserName} , (err , user) => {
     if(user){
@@ -137,9 +137,11 @@ app.post("/SubmitUserDetails" , (req , res) => {
     res.send({message : "Details Updated Successfully"});
   })
 });
-const server = app.listen(process.env.API_PORT, () => {
+let server ;
+if(process.env.API_PORT){
+server = app.listen(process.env.API_PORT, () => {
   console.log(`server is running on port ${process.env.API_PORT}`);
-});
+});}
 // -----------------------------------------------------------------------------------------
 // For Changing Profile
 
