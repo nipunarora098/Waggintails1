@@ -18,7 +18,7 @@ function Chat({setProfileId}){
 }    
     useEffect(() =>{
         if(User){
-            socket.current = io("http://localhost:9002");
+            socket.current = io("/api");
             socket.current.emit("add-user" , User._id);
         }
         else{

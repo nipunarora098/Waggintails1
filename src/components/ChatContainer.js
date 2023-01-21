@@ -32,7 +32,6 @@ function ChatContainer(props){
     useEffect(() =>{
         if(socket.current){
             socket.current.on('msg-receive' , (msg) =>{
-                console.log("buddy");
                  setArrivalMessage({fromSelf : false , message : msg})
             });
 

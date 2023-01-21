@@ -10,6 +10,7 @@ const fs = require('fs');
 const socket = require("socket.io");
 var bcrypt = require('bcrypt');
 const dotenv = require('dotenv');
+const http = require('http');
 dotenv.config();
 const MOGOURI = process.env.MOGOURI;
 // const userRouter = require('./routes/users');
@@ -137,7 +138,7 @@ app.post("/SubmitUserDetails" , (req , res) => {
     res.send({message : "Details Updated Successfully"});
   })
 });
-let server ;
+let server = http.createServer(app);
 if(process.env.API_PORT){
 server = app.listen(process.env.API_PORT, () => {
   console.log(`server is running on port ${process.env.API_PORT}`);
@@ -416,12 +417,14 @@ app.post("/GetAllMessages" , async(req , res) =>{
 // socket -------------------------------------------------------------
 //=================================================================
 
-const io = socket(server , {
-  cors : {
-    origin : "http://localhost:3000",
-    Credentials : true , 
-  },
-})
+const io = socket(server 
+//   , {
+//   cors : {
+//     origin : "http://localhost:3000",
+//     Credentials : true , 
+//   },
+// }
+)
 global.onlineUsers = new Map();
 io.on('connection' , (socket) =>{
   global.chatSocket = socket ;
