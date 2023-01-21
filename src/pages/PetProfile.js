@@ -45,7 +45,7 @@ function PetProfile() {
         }
         setImages(arr);
         const response2 = await fetch(
-          `http://localhost:9002/GetProfilePhoto/${User._id}`
+          `${process.env.REACT_APP_API_URL}/GetProfilePhoto/${User._id}`
         );
         const data2 = await response2.blob();
         setImage(URL.createObjectURL(data2));
@@ -59,7 +59,7 @@ function PetProfile() {
     const id = {
       id: props.id,
     };
-    axios.post("http://localhost:9002/DeletePhoto", id).then((res) => {
+    axios.post(`${process.env.REACT_APP_API_URL}/DeletePhoto`, id).then((res) => {
       toast.error(res.data.message, {
         position: "bottom-right",
         autoClose: 8000,
@@ -93,7 +93,7 @@ function PetProfile() {
     formData.append("Image", event.target.files[0]);
     formData.append("id", User._id);
     axios
-      .post("http://localhost:9002/ChangeProfile", formData)
+      .post(`${process.env.REACT_APP_API_URL}/ChangeProfile`, formData)
       .then((res) => {
         setImage(URL.createObjectURL(event.target.files[0]));
       })
@@ -107,7 +107,7 @@ function PetProfile() {
     Images.push({ src: URL.createObjectURL(event.target.files[0]) });
     formData.append("id", User._id);
     axios
-      .post("http://localhost:9002/AddPhotos", formData)
+      .post(`${process.env.REACT_APP_API_URL}/AddPhotos`, formData)
       .then((res) => {
         alert(res.data.message);
         window.location.reload(false);
