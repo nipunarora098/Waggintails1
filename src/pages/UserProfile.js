@@ -29,7 +29,7 @@ function UserProfile(props) {
   Postal_Code : Postal_Code,
   About : About
     }
-    axios.post("http://localhost:9002/SubmitUserDetails", user).then((res) => {
+    axios.post(`${process.env.REACT_APP_API_URL}/SubmitUserDetails`, user).then((res) => {
         alert(res.data.message);
         props.setLoginUser(user);
         Navigate("/MemberArea");

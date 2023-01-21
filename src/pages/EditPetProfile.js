@@ -20,7 +20,7 @@ function EditPetProfile() {
   useEffect(() => {
     async function fetchImage(){
         if(User){
-        const response2 = await fetch(`http://localhost:9002/GetProfilePhoto/${User._id}`);
+        const response2 = await fetch(`${process.env.REACT_APP_API_URL}/GetProfilePhoto/${User._id}`);
         const data2 = await response2.blob();
         setImage(URL.createObjectURL(data2));
         }

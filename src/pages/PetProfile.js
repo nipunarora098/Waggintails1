@@ -24,7 +24,7 @@ function PetProfile() {
     async function fetchImages() {
       if (User) {
         let response = await fetch(
-          `http://localhost:9002/GetImages/${User._id}`
+          `${process.env.REACT_APP_API_URL}/GetImages/${User._id}`
         );
         let data = await response.json();
         let arr = [];

@@ -31,7 +31,7 @@ function Chat({setProfileId}){
     useEffect(() => {
         async function GetContacts(){
             if(User){
-          let response = await fetch(`http://localhost:9002/GetContacts/${User._id}`);
+          let response = await fetch(`${process.env.REACT_APP_API_URL}/GetContacts/${User._id}`);
           let data = await response.json();
           setContacts(data);}
         }

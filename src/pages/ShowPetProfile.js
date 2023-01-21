@@ -14,7 +14,7 @@ function ShowPetProfile(props){
     useEffect(() => {
         async function fetchImages(){
             if(id){
-            let response = await fetch(`http://localhost:9002/GetImages/${id}`);
+            let response = await fetch(`${process.env.REACT_APP_API_URL}/GetImages/${id}`);
             let data = await response.json();
             let arr = [];
             for(let i = 0 ; i < data.length ; i++){

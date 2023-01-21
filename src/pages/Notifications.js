@@ -21,7 +21,7 @@ function Notifications(props) {
   useEffect(() => {
     async function GetRequests() {
       if(User){
-      let response = await fetch(`http://localhost:9002/GetRequests/${User._id}`);
+      let response = await fetch(`${process.env.REACT_APP_API_URL}/GetRequests/${User._id}`);
       let data = await response.json();
       for (let i = 0; i < data.length; i++) {
         const buffer = Buffer.from(data[i].image.data.data);
