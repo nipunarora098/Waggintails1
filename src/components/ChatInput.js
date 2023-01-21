@@ -11,10 +11,15 @@ function ChatInput({handleSendMsg}){
           setMsg("");
         }
       };
+    const handleKeypress = e =>{
+        if(e.keyCode === 13){
+            sendChat(e);
+        }
+    }
     return (
         <div className = "ChatInput">
             <form className = "input-container" onSubmit = {(event) => sendChat(event)}>
-                <InputEmoji placeholder = "Type your Message Here" value = {msg} onChange = {setMsg}/> 
+                <InputEmoji placeholder = "Type your Message Here" value = {msg} onChange = {setMsg} onKeyPress = {handleKeypress}/> 
                 <button type = "submit" className = "send_btn">
                     <IoMdSend/>
                 </button>
