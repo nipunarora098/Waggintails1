@@ -27,7 +27,7 @@ const defaultImage = fs.readFileSync('profile.png' );
 app.use(bodyParser.urlencoded({ extended: true }));
 mongoose.set('strictQuery', false);
 mongoose.connect(
-  MOGOURI,
+  "mongodb+srv://Nipun:07May1973%40@cluster0.bafjt77.mongodb.net/WagginTails?retryWrites=true&w=majority",
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
