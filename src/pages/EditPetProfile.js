@@ -40,7 +40,7 @@ if(User) fetchImage();
       PetAbout: PetAbout,
       PetSchedule: PetSchedule,
     };
-    axios.post("http://localhost:9002/SubmitPetDetails", Pet).then((res) => {
+    axios.post(`${process.env.REACT_APP_API_URL}/SubmitPetDetails`, Pet).then((res) => {
       alert(res.data.message);
       localStorage.setItem(process.env.User, JSON.stringify(res.data.user));
       Navigate("/PetProfile");
