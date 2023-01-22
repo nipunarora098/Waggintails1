@@ -21,7 +21,7 @@ function ChatInput({handleSendMsg}){
         <div className = "ChatInput">
             <form className = "input-container" onSubmit = {(event) => sendChat(event)}>
                 <InputEmoji placeholder = "Type your Message Here" value = {msg} onChange = {setMsg} onKeyPress = {handleKeypress}/> 
-                <button type = "submit" className = "send_btn" ref = {node => (this.btn = node)}>
+                <button type = "submit" className = "send_btn">
                     <IoMdSend/>
                 </button>
             </form>
