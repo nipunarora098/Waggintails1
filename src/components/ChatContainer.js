@@ -47,7 +47,7 @@ function ChatContainer(props){
     useEffect(()=>{
         async function GetMessages(){
             if(currentChat){
-            const response = await axios.post("${process.env.REACT_APP_API_URL}/GetAllMessages" , {
+            const response = await axios.post(`${process.env.REACT_APP_API_URL}/GetAllMessages` , {
             from : user._id,
             to : currentChat._id,
             });
