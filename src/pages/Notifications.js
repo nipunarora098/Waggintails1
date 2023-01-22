@@ -39,12 +39,12 @@ function Notifications(props) {
     GetRequests();
   }, [User._id , Navigate]);
   function Accept_Request(props) {
-    axios.post("http://localhost:9002/AcceptRequest", props).then((res) => {
+    axios.post(`${process.env.REACT_APP_API_URL}/AcceptRequest`, props).then((res) => {
       alert(res.data.message);
     });
   }
   function Delete_Request(props) {
-    axios.post("http://localhost:9002/DeleteRequest", props).then((res) => {
+    axios.post(`${process.env.REACT_APP_API_URL}/DeleteRequest`, props).then((res) => {
       alert(res.data.message);
     });
   }
