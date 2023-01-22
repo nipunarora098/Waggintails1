@@ -8,7 +8,7 @@ import ChatContainer from "../components/ChatContainer";
 import { Buffer } from 'buffer';
 import {io} from 'socket.io-client';
 function Chat({setProfileId}){
-    const socket = useRef();
+    // const socket = useRef();
     const Navigate = useNavigate();
     const [Contacts , setContacts] = useState(null);
     const [currentChat , setcurrentChat] = useState(undefined);
@@ -16,15 +16,16 @@ function Chat({setProfileId}){
     if(!User){
     User = JSON.parse(localStorage.getItem(process.env.User));
 }    
+    const socket = io(process.env.REACT_APP_API_URL);
     useEffect(() =>{
         if(User){
-            socket.current = io("/api");
-            socket.current.emit("add-user" , User._id);
+            // const socket = io("/");
+            socket.emit("add-user" , User._id);
         }
         else{
             Navigate("/SignupPM");
         }
-    } , [User._id]);
+    } , [User._id,Navigate , User , socket]);
     if(User==null){
         Navigate('/SignupPM');
     }

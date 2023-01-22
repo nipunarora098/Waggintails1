@@ -7,7 +7,7 @@ const multer = require('multer');
 const path = require('path');
 const router = require('express').Router();
 const fs = require('fs');
-const socket = require("socket.io");
+const socketio = require("socket.io");
 var bcrypt = require('bcrypt');
 const dotenv = require('dotenv');
 const http = require('http');
@@ -417,14 +417,7 @@ app.post("/api/GetAllMessages" , async(req , res) =>{
 // socket -------------------------------------------------------------
 //=================================================================
 
-const io = socket(server 
-//   , {
-//   cors : {
-//     origin : "http://localhost:3000",
-//     Credentials : true , 
-//   },
-// }
-)
+const io = socketio(server );
 global.onlineUsers = new Map();
 io.on('connection' , (socket) =>{
   global.chatSocket = socket ;
@@ -436,7 +429,7 @@ io.on('connection' , (socket) =>{
     const sendUserSocket = onlineUsers.get(data.to);
     if(sendUserSocket){
       console.log(onlineUsers , data.message);
-      socket.to(sendUserSocket).emit("msg-receive" , data.message);
+      io.to(sendUserSocket).emit("msg-receive" , data.message);
     }
   })
 });
