@@ -13,7 +13,7 @@ function ChatContainer(props){
     const [arrivalMessage , setArrivalMessage] = useState(null); 
     const scrollRef = useRef();
     const handleSendMsg = async(msg) => {
-        await axios.post("http://localhost:9002/AddMessage" ,{
+        await axios.post(`${process.env.REACT_APP_API_URL}/AddMessage` ,{
             from : user._id,
             to : currentChat._id,
             message:msg , 
@@ -47,7 +47,7 @@ function ChatContainer(props){
     useEffect(()=>{
         async function GetMessages(){
             if(currentChat){
-            const response = await axios.post("http://localhost:9002/GetAllMessages" , {
+            const response = await axios.post("${process.env.REACT_APP_API_URL}/GetAllMessages" , {
             from : user._id,
             to : currentChat._id,
             });
