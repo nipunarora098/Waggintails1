@@ -432,8 +432,10 @@ io.on('connection' , (socket) =>{
     onlineUsers.set(userId , socket.id);
   });
   socket.on("send-msg" , (data) =>{
+    console.log(data.message);
     const sendUserSocket = onlineUsers.get(data.to);
     if(sendUserSocket){
+      console.log(onlineUsers , data.message);
       socket.to(sendUserSocket).emit("msg-receive" , data.message);
     }
   })
