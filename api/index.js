@@ -148,7 +148,7 @@ server = app.listen(process.env.API_PORT, () => {
 
 const storage = multer.diskStorage({
   destination: function(req, file, cb) {
-      cb(null,path.join( __dirname ,'public/images/uploads'));
+      cb(null,`${process.env.VERCEL_OUT_DIR}/public/images/uploads`);
   },
   filename: function(req, file, cb) {   
       cb(null, file.fieldname + '-' + Date.now());
