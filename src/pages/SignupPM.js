@@ -4,8 +4,7 @@ import "../css/SignupPM.css";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import BounceLoader from 'react-loader-spinner/dist/react-loader-spinner.js';
-import 'react-loader-spinner/dist/react-loader-spinner.css';
+import * as Loader from "react-loader-spinner";import 'react-loader-spinner/dist/react-loader-spinner.css';
 function SignupPM() {
   const [loading, setLoading] = useState(false);
   const [UserName, setUserName] = useState("");
@@ -73,7 +72,7 @@ function SignupPM() {
   return (
     <div>
       {loading && (
-        <BounceLoader type="Bounce" color="#somecolor" height={100} width={100} />
+        <Loader type="Bounce" color="#somecolor" height={100} width={100} />
       )}
       {!loading && (
         <div>
