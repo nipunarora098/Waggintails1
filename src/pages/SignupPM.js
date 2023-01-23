@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "../css/SignupPM.css";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+// import "react-toastify/dist/ReactToastify.css";
 import * as Loader from "react-loader-spinner";import 'react-loader-spinner/dist/react-loader-spinner.css';
 function SignupPM() {
   const [loading, setLoading] = useState(false);
