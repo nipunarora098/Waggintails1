@@ -158,7 +158,7 @@ const upload = multer({storage : multer.memoryStorage()});
 app.post('/api/ChangeProfile' , upload.single('Image') ,(req , res) =>{
     User.findOneAndUpdate({_id:req.body.id} , {
         image : {
-          data : fs.readFileSync(req.file.buffer),
+          data : req.file.buffer,
           contentType : 'image/*'
         }
     } , (err, user) =>{
