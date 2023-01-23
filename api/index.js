@@ -146,15 +146,15 @@ server = app.listen(process.env.API_PORT, () => {
 // -----------------------------------------------------------------------------------------
 // For Changing Profile
 
-const storage = multer.diskStorage({
-  destination: function(req, file, cb) {
-      cb(null,`${process.env.REACT_APP_API_URL}/public/images/uploads`);
-  },
-  filename: function(req, file, cb) {   
-      cb(null, file.fieldname + '-' + Date.now());
-  }
-});
-const upload = multer({storage : storage});
+// const storage = multer.diskStorage({
+//   destination: function(req, file, cb) {
+//       cb(null,`${process.env.REACT_APP_API_URL}/public/images/uploads`);
+//   },
+//   filename: function(req, file, cb) {   
+//       cb(null, file.fieldname + '-' + Date.now());
+//   }
+// });
+const upload = multer({storage : multer.memoryStorage()});
 app.post('/api/ChangeProfile' , upload.single('Image') ,(req , res) =>{
     User.findOneAndUpdate({_id:req.body.id} , {
         image : {
