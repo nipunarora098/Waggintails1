@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { Buffer } from "buffer";
 import axios from "axios";
 import {ToastContainer , toast} from "react-toastify";
+import BouncerLoader from "./BouncerLoader";
 axios.create({
   maxContentLength: Infinity,
 });
@@ -19,7 +20,7 @@ function MemberArea(props) {
   if (!User) {
     Navigate("/SignupPM");
   }
-  const [Members, setMembers] = useState([]);
+  const [Members, setMembers] = useState(null);
 
   useEffect(() => {
     if (!User) {
@@ -142,7 +143,9 @@ function MemberArea(props) {
             </ul>
           </nav>
         </div>
-        <div className="cards_wrap">{Members.map(Card)}</div>
+        <div className="cards_wrap">
+          {Members ?Members.map(Card) : <BouncerLoader/>}
+          </div>
         <ToastContainer/>
         <footer>
           <div className="content">

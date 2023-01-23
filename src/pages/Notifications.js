@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "../css/Notifications.css";
 import { Buffer } from "buffer";
 import axios from "axios";
+import BouncerLoader from "./BouncerLoader";
 function Notifications(props) {
   const User = JSON.parse(localStorage.getItem(process.env.User));
   // const User = props.User;
@@ -12,7 +13,7 @@ function Notifications(props) {
     localStorage.setItem(process.env.User, JSON.stringify({}));
     Navigate("/SignupPM");
   }
-  const [Requests, setRequests] = useState([]);
+  const [Requests, setRequests] = useState(null);
   useEffect(() => {
     if(!User){
       Navigate('/SignupPM');
@@ -158,7 +159,7 @@ function Notifications(props) {
           <h1 className="m-0">Notifications </h1>
         </div>
         <div className="box-body p-0">
-          {Requests.map(Card)}
+          {Requests ? Requests.map(Card) : <BouncerLoader/>}
           </div>
         {/* ---------------------------Notifications------------------------------------------------- */}
         <footer>

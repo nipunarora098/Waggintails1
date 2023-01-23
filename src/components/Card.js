@@ -2,6 +2,7 @@ import React , {useState , useEffect}from "react";
 import '../css/Card.css';
 import { Buffer } from 'buffer'; 
 import { Link } from "react-router-dom";
+import BouncerLoader from "../pages/BouncerLoader";
 // import 
 function Card (props){
     const Contacts = props.contacts;
@@ -57,7 +58,7 @@ function Card (props){
                         </div>
                     </div>
                 )
-            }) : <p>No Contacts</p>}
+            }) : <BouncerLoader/>}
             
 </div>
             <div className = "current-user">

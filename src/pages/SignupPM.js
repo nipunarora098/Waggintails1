@@ -4,7 +4,7 @@ import "../css/SignupPM.css";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 // import "react-toastify/dist/ReactToastify.css";
-import * as Loader from "react-loader-spinner";
+import BouncerLoader from "./BouncerLoader.js";
 function SignupPM() {
   const [loading, setLoading] = useState(false);
   const [UserName, setUserName] = useState("");
@@ -21,11 +21,14 @@ function SignupPM() {
     setLoading(true);
     axios.post(`${process.env.REACT_APP_API_URL}/login`, user).then((res) => {
       setLoading(false);
-      alert(res.data.message);
+      // alert(res.data.message);
       if (res.data.user) {
         localStorage.setItem(process.env.User, JSON.stringify(res.data.user));
         // setLoginUser(res.data.user);
         Navigate("/MemberArea");
+      }
+      else{
+        alert(res.data.message);
       }
     });
   };
@@ -72,7 +75,7 @@ function SignupPM() {
   return (
     <div>
       {loading && (
-        <Loader type="Bounce" color="#somecolor" height={100} width={100} />
+        <BouncerLoader/>
       )}
       {!loading && (
         <div>
@@ -167,7 +170,7 @@ function SignupPM() {
             </div>
           </div>
         </div>
-      )}
+       )} 
     </div>
     // loading ? (): ()
     // loading ? (<Loader type="Bounce" color="#00c2cb" height={100} width={100} />):
