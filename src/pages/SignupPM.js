@@ -171,7 +171,7 @@ function SignupPM() {
     </div>
     // loading ? (): ()
     // loading ? (<Loader type="Bounce" color="#00c2cb" height={100} width={100} />):
-    // (
+    // (              
   );
 }
 export default SignupPM;
