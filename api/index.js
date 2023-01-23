@@ -205,7 +205,7 @@ app.post('/api/AddPhotos' , upload.single('Image') ,(req , res) =>{
     const image = new Image({
       user_id : req.body.id,
       image : {
-        data : fs.readFileSync(req.file.path),
+        data : req.file.buffer,
         contentType : 'image/*'
       }
     });
