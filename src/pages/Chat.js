@@ -25,7 +25,7 @@ function Chat({setProfileId}){
         else{
             Navigate("/SignupPM");
         }
-    } , [User._id,Navigate , User , socket]);
+    } , [User._id]);
     if(User==null){
         Navigate('/SignupPM');
     }
