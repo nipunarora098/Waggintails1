@@ -421,7 +421,7 @@ const io = socket(server
   , {
     pingTimeout : 60000,
   cors : {
-    origin :"http://localhost:3001",
+    origin :"*",
     Credentials : true
   },
 }
