@@ -8,7 +8,7 @@ import ChatContainer from "../components/ChatContainer";
 import { Buffer } from 'buffer';
 import {io} from 'socket.io-client';
 function Chat({setProfileId}){
-    // const socket = useRef();
+    const socket = useRef();
     const Navigate = useNavigate();
     const [Contacts , setContacts] = useState(null);
     const [currentChat , setcurrentChat] = useState(undefined);
@@ -16,11 +16,11 @@ function Chat({setProfileId}){
     if(!User){
     User = JSON.parse(localStorage.getItem(process.env.User));
 }    
-    const socket = io(process.env.REACT_APP_API_URL);
+    // const socket = io(process.env.REACT_APP_API_URL);
     useEffect(() =>{
         if(User){
-            // const socket = io("/");
-            socket.emit("add-user" , User._id);
+            socket.current = io(process.env.REACT_APP_API_URL);
+            socket.current.emit("add-user" , User._id);
         }
         else{
             Navigate("/SignupPM");
@@ -37,7 +37,7 @@ function Chat({setProfileId}){
           setContacts(data);}
         }
         GetContacts();
-      },[User._id]);
+      },[User,User._id]);
       const handleChatChange = (chat) =>{
         setcurrentChat(chat);
         setProfileId(chat);

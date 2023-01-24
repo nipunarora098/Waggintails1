@@ -419,12 +419,13 @@ app.post("/api/GetAllMessages" , async(req , res) =>{
 
 const io = socket(server 
   , {
+    pingTimeout : 60000,
   cors : {
-    origin :process.env.REACT_APP_API_URL,
-    Credentials : true , 
+    origin :"http://localhost:3001",
+    Credentials : true
   },
 }
-)
+);
 global.onlineUsers = new Map();
 io.on('connection' , (socket) =>{
   global.chatSocket = socket ;

@@ -47,7 +47,7 @@ function MemberArea(props) {
       }
     }
     getMembers();
-  }, [id, Navigate]);
+  }, [id, Navigate,User]);
 
   function Send_Request(props) {
     const request = {
