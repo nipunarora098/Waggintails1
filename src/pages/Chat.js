@@ -37,7 +37,7 @@ function Chat({setProfileId}){
           setContacts(data);}
         }
         GetContacts();
-      },[User,User._id]);
+      },[User._id]);
       const handleChatChange = (chat) =>{
         setcurrentChat(chat);
         setProfileId(chat);
